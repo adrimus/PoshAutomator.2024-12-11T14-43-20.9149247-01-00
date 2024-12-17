@@ -14,4 +14,8 @@ jobs:
       - name: Run the Get-SystemInfo.Unit.Test.ps1 Test File
         shell: pwsh
         run: |
-          Invoke-Pester .\Test\Get-SystemInfo.Test.ps1 -Passthru
+          if (Test-Path -Path .\Test\Get-SystemInfo.Test.ps1) {
+            Invoke-Pester .\Test\Get-SystemInfo.Test.ps1 -Passthru
+          } else {
+            Write-Error "Test file not found: .\Test\Get-SystemInfo.Test.ps1"
+          }
