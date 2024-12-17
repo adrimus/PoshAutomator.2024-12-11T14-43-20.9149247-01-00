@@ -1,0 +1,2 @@
+Filesystem      1K-blocks    Used  Available Use% Mounted on
+/dev/sde       1055762868 1879332 1000180064   1% /
