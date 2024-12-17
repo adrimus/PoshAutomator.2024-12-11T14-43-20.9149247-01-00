@@ -1,0 +1,21 @@
+name: PoshAutomator Pester Tests
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  pester-test:
+    name: Pester test
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Run the Get-SystemInfo.Unit.Test.ps1 Test File
+        shell: pwsh
+        run: |
+          if (Test-Path -Path .\Test\Get-SystemInfo.Test.ps1) {
+            Invoke-Pester .\Test\Get-SystemInfo.Test.ps1 -Passthru
+          } else {
+            Write-Error "Test file not found: .\Test\Get-SystemInfo.Test.ps1"
+          }
